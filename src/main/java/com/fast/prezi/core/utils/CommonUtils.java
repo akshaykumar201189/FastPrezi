@@ -1,5 +1,7 @@
 package com.fast.prezi.core.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -7,7 +9,14 @@ import java.util.Scanner;
 /**
  * Created by akshay.kesarwan on 22/05/16.
  */
+@Slf4j
 public class CommonUtils {
+
+    /**
+     * Reads file in resource folder and returns the content in String
+     * @param fileName
+     * @return
+     */
     public static String getFile(String fileName) {
         StringBuilder result = new StringBuilder("");
         ClassLoader classLoader = CommonUtils.class.getClassLoader();
@@ -19,7 +28,7 @@ public class CommonUtils {
             }
             scanner.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error in reading file : "+ fileName);
         }
         return result.toString();
     }

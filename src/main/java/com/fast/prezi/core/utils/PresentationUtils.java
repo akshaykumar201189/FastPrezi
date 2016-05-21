@@ -17,8 +17,12 @@ import java.util.Locale;
 @Slf4j
 public class PresentationUtils {
 
-    public static void sortPresentationsByCreatedAt(List<Presentation> sortedPresentations) {
-        sortedPresentations.sort(new Comparator<Presentation>() {
+    /**
+     * Sorts the given presentations in ascending order of createdAt
+     * @param presentations
+     */
+    public static void sortPresentationsByCreatedAt(List<Presentation> presentations) {
+        presentations.sort(new Comparator<Presentation>() {
         @Override
         public int compare(Presentation o1, Presentation o2) {
             DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);

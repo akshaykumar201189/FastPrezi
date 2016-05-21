@@ -1,4 +1,4 @@
-package com.fast.prezi.resources;
+package com.fast.prezi.controllers;
 
 import com.fast.prezi.core.services.interfaces.FastPreziService;
 import com.fast.prezi.data.model.Presentation;
@@ -24,13 +24,6 @@ public class PresentationController {
     @Inject
     public PresentationController(FastPreziService fastPreziService) {
         this.fastPreziService = fastPreziService;
-    }
-
-    @GET
-    @Path("/test")
-    public Response test() {
-        String result = "Testing Successful";
-        return Response.status(Response.Status.OK).entity(result).build();
     }
 
     @GET

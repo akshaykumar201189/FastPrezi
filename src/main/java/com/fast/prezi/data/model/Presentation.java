@@ -12,7 +12,6 @@ import java.util.Date;
  * Created by akshay.kesarwan on 21/05/16.
  */
 @Data
-@Slf4j
 public class Presentation {
     private String id;
     private String title;
