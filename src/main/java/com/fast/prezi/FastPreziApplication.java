@@ -25,6 +25,7 @@ public class FastPreziApplication extends Application<FastPreziConfiguration> {
 
     @Override
     public void run(FastPreziConfiguration configuration, Environment environment) throws Exception {
+        environment.healthChecks().register("FastPrezi", new FastPreziHealthCheck());
     }
 
     public static void main(String args[]) throws Exception {

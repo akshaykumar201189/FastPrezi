@@ -28,14 +28,16 @@ public class PresentationController {
 
     @GET
     @Path("/")
-    public Response getAllImages(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
+    public Response getAllPresentations(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
         List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize);
         return Response.status(Response.Status.OK).entity(presentations).build();
     }
 
     @GET
     @Path("/sort")
-    public Response getSortedImages(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
+    public Response getSortedPresentations
+
+            (@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
         List<Presentation> presentations = fastPreziService.getSortedPresentations(pageNumber, pageSize);
         return Response.status(Response.Status.OK).entity(presentations).build();
     }
