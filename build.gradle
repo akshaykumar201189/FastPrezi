@@ -22,6 +22,7 @@ dependencies {
     compile group: 'com.google.inject', name: 'guice', version: guiceVersion
     compile group: 'com.hubspot.dropwizard', name: 'dropwizard-guice', version: dropwizardGuiceVersion
     compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    compile group: 'com.google.code.gson', name: 'gson', version: gsonVersion
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
 }
