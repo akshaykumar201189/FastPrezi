@@ -8,7 +8,6 @@ import java.util.List;
  * Created by akshay.kesarwan on 21/05/16.
  */
 public interface PresentationDao {
-    List<Presentation> getPresentations(int pageNumber, int pageSize);
-    List<Presentation> getSortedPresentations(int pageNumber, int pageSize);
-    List<Presentation> searchPresentations(String titleRegex, int pageNumber, int pageSize);
+    List<Presentation> getPresentations(int pageNumber, int pageSize, Boolean sort);
+    List<Presentation> searchPresentations(String titleRegex, int pageNumber, int pageSize, Boolean sort);
 }

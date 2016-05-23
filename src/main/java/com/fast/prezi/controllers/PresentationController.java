@@ -28,25 +28,16 @@ public class PresentationController {
 
     @GET
     @Path("/")
-    public Response getAllPresentations(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
-        List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize);
-        return Response.status(Response.Status.OK).entity(presentations).build();
-    }
-
-    @GET
-    @Path("/sort")
-    public Response getSortedPresentations
-
-            (@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize) {
-        List<Presentation> presentations = fastPreziService.getSortedPresentations(pageNumber, pageSize);
+    public Response getAllPresentations(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
+        List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize, sort);
         return Response.status(Response.Status.OK).entity(presentations).build();
     }
 
     @GET
     @Path("/search")
     public Response searchPresentations(@QueryParam("title") String title, @QueryParam("page_number") Integer pageNumber,
-                                        @QueryParam("page_size") Integer pageSize) {
-        List<Presentation> presentations = fastPreziService.searchPresentations(title, pageNumber, pageSize);
+                                        @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
+        List<Presentation> presentations = fastPreziService.searchPresentations(title, pageNumber, pageSize, sort);
         return Response.status(Response.Status.OK).entity(presentations).build();
     }
 }

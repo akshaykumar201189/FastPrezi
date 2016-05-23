@@ -39,22 +39,28 @@ public class JsonFileBasedPresentationDaoImpl implements PresentationDao {
         PresentationUtils.sortPresentationsByCreatedAt(sortedPresentations);
     }
 
-    public List<Presentation> getPresentations(int pageNumber, int pageSize) {
+    public List<Presentation> getPresentations(int pageNumber, int pageSize, Boolean sort) {
+        if(sort!=null && sort==true)
+            return limit(sortedPresentations, pageNumber, pageSize);
         return limit(presentations, pageNumber, pageSize);
     }
 
-    public List<Presentation> getSortedPresentations(int pageNumber, int pageSize) {
-        return limit(sortedPresentations, pageNumber, pageSize);
-    }
-
-    public List<Presentation> searchPresentations(String titleRegex, int pageNumber, int pageSize) {
-        List<Presentation> presentations = new ArrayList<>();
-        for(Presentation presentation : sortedPresentations) {
-            String title = presentation.getTitle();
-            if(title!=null && title.contains(titleRegex))
-                presentations.add(presentation);
+    public List<Presentation> searchPresentations(String titleRegex, int pageNumber, int pageSize, Boolean sort) {
+        List<Presentation> searchPresentations = new ArrayList<>();
+        if(sort!=null && sort==true) {
+            for (Presentation presentation : sortedPresentations) {
+                String title = presentation.getTitle();
+                if (title != null && title.contains(titleRegex))
+                    searchPresentations.add(presentation);
+            }
+        } else {
+            for (Presentation presentation : presentations) {
+                String title = presentation.getTitle();
+                if (title != null && title.contains(titleRegex))
+                    searchPresentations.add(presentation);
+            }
         }
-        return limit(presentations, pageNumber, pageSize);
+        return limit(searchPresentations, pageNumber, pageSize);
     }
 
     private List<Presentation> limit(List<Presentation> presentations, int pageNumber, int pageSize) {

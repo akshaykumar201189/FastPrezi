@@ -12,24 +12,18 @@ public interface FastPreziService {
      * Get all the presentations with pagination support
      * @param pageNumber
      * @param pageSize
+     * @param sort
      * @return
      */
-    List<Presentation> getPresentations(Integer pageNumber, Integer pageSize);
-
-    /**
-     * Get all the presentations with pagination support sorted by createdAt
-     * @param pageNumber
-     * @param pageSize
-     * @return
-     */
-    List<Presentation> getSortedPresentations(Integer pageNumber, Integer pageSize);
+    List<Presentation> getPresentations(Integer pageNumber, Integer pageSize, Boolean sort);
 
     /**
      * Searches the presentations whose title matches regex
      * @param titleRegex
      * @param pageNumber
      * @param pageSize
+     * @param sort
      * @return
      */
-    List<Presentation> searchPresentations(String titleRegex, Integer pageNumber, Integer pageSize);
+    List<Presentation> searchPresentations(String titleRegex, Integer pageNumber, Integer pageSize, Boolean sort);
 }

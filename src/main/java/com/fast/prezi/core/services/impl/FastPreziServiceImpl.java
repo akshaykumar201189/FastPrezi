@@ -21,23 +21,16 @@ public class FastPreziServiceImpl implements FastPreziService {
     }
 
     @Override
-    public List<Presentation> getPresentations(Integer pageNumber, Integer pageSize) {
+    public List<Presentation> getPresentations(Integer pageNumber, Integer pageSize, Boolean sort) {
         pageNumber = pageNumber!=null?pageNumber:DEFAULT_PAGE_NUMBER;
         pageSize = pageSize!=null?pageSize:DEFAULT_PAGE_SIZE;
-        return presentationDao.getPresentations(pageNumber, pageSize);
+        return presentationDao.getPresentations(pageNumber, pageSize, sort);
     }
 
     @Override
-    public List<Presentation> getSortedPresentations(Integer pageNumber, Integer pageSize) {
+    public List<Presentation> searchPresentations(String titleRegex, Integer pageNumber, Integer pageSize, Boolean sort) {
         pageNumber = pageNumber!=null?pageNumber:DEFAULT_PAGE_NUMBER;
         pageSize = pageSize!=null?pageSize:DEFAULT_PAGE_SIZE;
-        return presentationDao.getSortedPresentations(pageNumber, pageSize);
-    }
-
-    @Override
-    public List<Presentation> searchPresentations(String titleRegex, Integer pageNumber, Integer pageSize) {
-        pageNumber = pageNumber!=null?pageNumber:DEFAULT_PAGE_NUMBER;
-        pageSize = pageSize!=null?pageSize:DEFAULT_PAGE_SIZE;
-        return presentationDao.searchPresentations(titleRegex, pageNumber, pageSize);
+        return presentationDao.searchPresentations(titleRegex, pageNumber, pageSize, sort);
     }
 }
