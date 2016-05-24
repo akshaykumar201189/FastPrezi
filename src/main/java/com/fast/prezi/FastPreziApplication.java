@@ -30,6 +30,7 @@ public class FastPreziApplication extends Application<FastPreziConfiguration> {
 
     @Override
     public void run(FastPreziConfiguration configuration, Environment environment) throws Exception {
+        // Add Health Check
         environment.healthChecks().register("FastPrezi", new FastPreziHealthCheck());
         // Add CORS Filter
         FilterRegistration.Dynamic filter =environment.servlets().addFilter("CORS", CrossOriginFilter.class);

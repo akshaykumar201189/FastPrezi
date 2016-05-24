@@ -19,6 +19,7 @@ public class FastPreziModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(FastPreziService.class).to(FastPreziServiceImpl.class).in(Singleton.class);
+        // Add other implementation of PresentationDao when db based implementation is there
         bind(PresentationDao.class).to(JsonFileBasedPresentationDaoImpl.class);
         bind(PresentationUtils.class);
     }

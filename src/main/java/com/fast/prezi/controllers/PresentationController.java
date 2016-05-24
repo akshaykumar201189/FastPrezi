@@ -3,6 +3,7 @@ package com.fast.prezi.controllers;
 import com.fast.prezi.core.services.interfaces.FastPreziService;
 import com.fast.prezi.data.model.Presentation;
 import com.google.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Path("/presentations")
 @Produces(MediaType.APPLICATION_JSON)
+@Slf4j
 public class PresentationController {
 
     private FastPreziService fastPreziService;
@@ -29,15 +31,25 @@ public class PresentationController {
     @GET
     @Path("/")
     public Response getAllPresentations(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
-        List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize, sort);
-        return Response.status(Response.Status.OK).entity(presentations).build();
+        try {
+            List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize, sort);
+            return Response.status(Response.Status.OK).entity(presentations).build();
+        } catch (Exception e) {
+            log.error("Error in getting Presentations");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GET
     @Path("/search")
     public Response searchPresentations(@QueryParam("title") String title, @QueryParam("page_number") Integer pageNumber,
                                         @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
-        List<Presentation> presentations = fastPreziService.searchPresentations(title, pageNumber, pageSize, sort);
-        return Response.status(Response.Status.OK).entity(presentations).build();
+        try {
+            List<Presentation> presentations = fastPreziService.searchPresentations(title, pageNumber, pageSize, sort);
+            return Response.status(Response.Status.OK).entity(presentations).build();
+        } catch (Exception e) {
+            log.error("Error in searching Presentations");
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
