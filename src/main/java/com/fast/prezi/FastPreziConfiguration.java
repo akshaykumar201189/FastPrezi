@@ -4,6 +4,7 @@ import com.fast.prezi.core.configs.JsonDaoConfig;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,5 +21,11 @@ public class FastPreziConfiguration extends Configuration {
     @NotNull
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonProperty
-    private JsonDaoConfig jsonDaoConfig;
+    public JsonDaoConfig jsonDaoConfig;
+
+    @Valid
+    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonProperty("swagger")
+    public SwaggerBundleConfiguration swaggerBundleConfiguration;
 }

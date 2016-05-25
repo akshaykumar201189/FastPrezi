@@ -1,6 +1,9 @@
 jsonDaoConfig:
   fileName: "prezis.json"
 
+swagger:
+  resourcePackage: com.fast.prezi.controllers
+
 server:
   applicationConnectors:
   - type: http

@@ -3,6 +3,8 @@ package com.fast.prezi.controllers;
 import com.fast.prezi.core.services.interfaces.FastPreziService;
 import com.fast.prezi.data.model.Presentation;
 import com.google.inject.Inject;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.GET;
@@ -19,6 +21,7 @@ import java.util.List;
 @Path("/presentations")
 @Produces(MediaType.APPLICATION_JSON)
 @Slf4j
+@Api(value = "/presentations", description = "Presentations APIs")
 public class PresentationController {
 
     private FastPreziService fastPreziService;
@@ -30,6 +33,7 @@ public class PresentationController {
 
     @GET
     @Path("/")
+    @ApiOperation(value = "Get Presentations", response = Presentation.class, responseContainer = "List")
     public Response getAllPresentations(@QueryParam("page_number") Integer pageNumber, @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
         try {
             List<Presentation> presentations = fastPreziService.getPresentations(pageNumber, pageSize, sort);
@@ -42,6 +46,7 @@ public class PresentationController {
 
     @GET
     @Path("/search")
+    @ApiOperation(value = "Search Presentations", response = Presentation.class, responseContainer = "List")
     public Response searchPresentations(@QueryParam("title") String title, @QueryParam("page_number") Integer pageNumber,
                                         @QueryParam("page_size") Integer pageSize, @QueryParam("sort") Boolean sort) {
         try {

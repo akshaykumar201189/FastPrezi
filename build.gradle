@@ -23,6 +23,7 @@ dependencies {
     compile group: 'com.hubspot.dropwizard', name: 'dropwizard-guice', version: dropwizardGuiceVersion
     compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     compile group: 'com.google.code.gson', name: 'gson', version: gsonVersion
+    compile group: 'io.federecio', name: 'dropwizard-swagger', version: swaggerVersion
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
 }

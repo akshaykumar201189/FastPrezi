@@ -2,9 +2,13 @@ package com.fast.prezi;
 
 import com.google.inject.Stage;
 import com.hubspot.dropwizard.guice.GuiceBundle;
+import com.wordnik.swagger.config.ConfigFactory;
+import com.wordnik.swagger.config.SwaggerConfig;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
@@ -26,6 +30,13 @@ public class FastPreziApplication extends Application<FastPreziConfiguration> {
                 .setConfigClass(FastPreziConfiguration.class)
                 .build(Stage.DEVELOPMENT);
         bootstrap.addBundle(guiceBundle);
+        bootstrap.addBundle(new SwaggerBundle<FastPreziConfiguration>() {
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(FastPreziConfiguration sampleConfiguration) {
+                return sampleConfiguration.swaggerBundleConfiguration;
+            }
+        });
+
     }
 
     @Override
